@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:proc  Version:1.9.0.0 - Fri Dec 29 20:43:48 PST 2017 -->
-  <!-- Generated from the PDS4 Information Model Version 1.9.0.0 - System Build 8a -->
+  <!-- PDS4 Schematron for Name Space Id:proc  Version:1.1.0.0 - Fri Sep 06 10:49:18 PDT 2019 -->
+  <!-- Generated from the PDS4 Information Model Version 1.11.0.0 - System Build 9a -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
 
@@ -51,6 +51,12 @@
     <sch:rule context="//proc:Processing_Information/pds:Local_Internal_Reference">
       <sch:assert test="pds:local_reference_type = 'processing_information_to_data_object'">
         PROC:error:local_reference_type_check: pds:local_reference_type must have value 'processing_information_to_data_object'</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="//proc:Software/pds:Internal_Reference">
+      <sch:assert test="pds:reference_type = 'data_to_software'">
+        PROC:error:software_reference_type_check: pds:reference_type must have value 'data_to_software'</sch:assert>
     </sch:rule>
   </sch:pattern>
 </sch:schema>
