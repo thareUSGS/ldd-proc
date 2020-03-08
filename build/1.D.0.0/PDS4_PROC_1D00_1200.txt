@@ -1,18 +1,18 @@
 PDS4 Local Data Dictionary Processing Report
 
 Configuration:
-   LDDTool Version        0.2.2.3
-   LDD Version Id:        1.1.0.0
+   LDDTool Version        10.1.2
+   LDD Version Id:        1.2.0.0
    LDD Label Version Id:  1.0
    LDD Discipline (T/F):  true
    LDD Namespace URL:     http://pds.nasa.gov/pds4/
    LDD URN Prefix:        urn:nasa:pds:
-   Time                   Fri Sep 06 10:49:18 PDT 2019
-   Common Schema          [PDS4_PDS_1B00.xsd]
-   Common Schematron      [PDS4_PDS_1B00.sch]
-   IM Version Id:         1.11.0.0
+   Time                   Sat Mar 07 17:28:51 MST 2020
+   Common Schema          [PDS4_PDS_1D00.xsd]
+   Common Schematron      [PDS4_PDS_1D00.sch]
+   IM Version Id:         1.13.0.0
    IM Namespace Id:       pds
-   IM Label Version Id:   1.17
+   IM Label Version Id:   1.19
    IM Object Model        [UpperModel.pont]
    IM Data Dictionary     [dd11179.pins]
    IM Configuration File  [MDPTNConfigClassDisp.xml]
@@ -20,7 +20,7 @@ Configuration:
    IM Document Spec       [DMDocument.pins]
 
 Parameters:
-   Input File             [PDS4_PROC_IngestLDD_1B00_1100.xml]
+   Input File             [PDS4_PROC_IngestLDD.xml]
    PDS Processing         true
    LDD Processing         true
    Discipline LDD         true
@@ -29,9 +29,9 @@ Parameters:
    Merge with Master      false
 
 Summary:
-   Classes                12
+   Classes                8
    Attributes             10
-   Associations           43
+   Associations           39
    Error messages         0
    Warning messages       1
    Information messages   0
@@ -41,69 +41,71 @@ Detailed validation messages
 
 Parsed Input - Header:
    LDD Name               Processing_Information
-   LDD Version            1.1.0.0
+   LDD Version            1.2.0.0
    Full Name              Jordan Padams
    Steward                img
    Namespace Id           proc
-   Comment                 The Processing_Information dictionary contains detailed information regarding the history of processing performed on data product(s) in order to produce the current product.
-   Last Modification Time 2019-09-06T12:00:00Z
+   Comment                 The Processing_Information dictionary contains detailed information regarding the history of 
+                processing performed on data product(s) in order to produce the current product.
+    ## CHANGE LOG ##
+    1.2.0.0, T.M.Hare
+    - upgraded to v1.13.0.0 of the IM
+    - Allow Software to be many (unbounded) to allow for many applictions to be listed for one process.
+    
+   Last Modification Time 2020-03-07T12:00:00Z
    PDS4 Merge Flag        false
 
 Parsed Input - Attributes:
 
    name                   process_owner_name
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The pprocess_owner_name attribute specifies the name of the person or organization that owns the software process.
 
    name                   process_owner_institution_name
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The pprocess_owner_institution_name attribute specifies the name of the institution that owns the software process.
 
    name                   program_type_name
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The program_type_name attribute specifies the type of software program used for this software processing. Some examples include: VICAR, ISIS, GDAL.
 
    name                   program_user
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The program_user attribute specifies the username of the person responsible for running the software prgoram.
 
    name                   program_hostname
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The program_hostname attribute specifies the machine hostname where the software program was executed.
 
    name                   program_path
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The program_path attribute specifies the file path to the software program. This path can be absolute or relative depending on the desired usage.
 
    name                   program_version
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The program_version attribute specifies the version of the software program.
 
    name                   program_start_date_time
-   version                1.11
+   version                1.13
    value data type        ASCII_Date_Time_YMD_UTC
    description            The program_start_date_time specifies the datetime for the start of the software program execution.
 
    name                   program_stop_date_time
-   version                1.11
+   version                1.13
    value data type        ASCII_Date_Time_YMD_UTC
    description            The program_start_date_time attribute specifies the datetime for the end of the software program execution.
 
    name                   parameter_type
-   version                1.11
+   version                1.13
    value data type        ASCII_Short_String_Collapsed
    description            The parameter_type attribute specifies the type of software parameter. Valid values: 'Input' - this parameter specifies input data, 'Output' - this parameter specifies output data, 'Log' - this parameter specifies log data
-   permissible value - value meaning
-      Input - this parameter specifies input data
-      Output - this parameter specifies output data
-      Log - this parameter specifies log data
 
 Parsed Input - Classes:
 
@@ -120,11 +122,6 @@ Parsed Input - Classes:
       maximum occurrences   1
       reference type        component_of
 
-      local identifier      XSChoice#11
-      minimum occurrences   1
-      maximum occurrences   *
-      reference type        component_of
-
       local identifier      Input_Product_List
       minimum occurrences   1
       maximum occurrences   *
@@ -135,14 +132,6 @@ Parsed Input - Classes:
       maximum occurrences   *
       reference type        component_of
 
-   name                   XSChoice#11
-   description            TBD_description
-   is abstract            true
-   is choice              true
-   subclass of            TBD_subClassOfTitle
-
-   Associations
-
    name                   Input_Product_List
    description            The Input_Product_List class describes all of the product(s) most directly used as input to software for product creation, including raw, partially-processed, calibrated, or derived products. These Input Products can be explicitly described in this label using the Input_Product class, and/or a list of products can be specified in another product referenced by the Internal_Reference or Local_Internal_Reference.
    is abstract            false
@@ -150,11 +139,6 @@ Parsed Input - Classes:
    subclass of            USER
 
    Associations
-
-      local identifier      XSChoice#12
-      minimum occurrences   1
-      maximum occurrences   *
-      reference type        component_of
 
       local identifier      pds.Internal_Reference
       minimum occurrences   1
@@ -171,14 +155,6 @@ Parsed Input - Classes:
       maximum occurrences   *
       reference type        component_of
 
-   name                   XSChoice#12
-   description            TBD_description
-   is abstract            true
-   is choice              true
-   subclass of            TBD_subClassOfTitle
-
-   Associations
-
    name                   Input_Product
    description            The Input_Product class describes one of the product most directly used as input to software for product creation, including raw, partially-processed, calibrated, or derived products.
    is abstract            false
@@ -191,11 +167,6 @@ Parsed Input - Classes:
       minimum occurrences   0
       maximum occurrences   *
       reference type        attribute_of
-
-      local identifier      XSChoice#13
-      minimum occurrences   1
-      maximum occurrences   1
-      reference type        component_of
 
       local identifier      pds.Internal_Reference
       minimum occurrences   1
@@ -211,14 +182,6 @@ Parsed Input - Classes:
       minimum occurrences   1
       maximum occurrences   1
       reference type        component_of
-
-   name                   XSChoice#13
-   description            TBD_description
-   is abstract            true
-   is choice              true
-   subclass of            TBD_subClassOfTitle
-
-   Associations
 
    name                   Process
    description            The Process class describes one of the software processes used to produce the data product referenced in the parent Processing_Information class. This class includes descriptions of the process owner as well as the data processing software used to create the data product.
@@ -250,7 +213,7 @@ Parsed Input - Classes:
 
       local identifier      Software
       minimum occurrences   0
-      maximum occurrences   1
+      maximum occurrences   *
       reference type        component_of
 
    name                   Software
@@ -390,11 +353,6 @@ Parsed Input - Classes:
       maximum occurrences   *
       reference type        attribute_of
 
-      local identifier      XSChoice#14
-      minimum occurrences   0
-      maximum occurrences   *
-      reference type        component_of
-
       local identifier      pds.Internal_Reference
       minimum occurrences   0
       maximum occurrences   *
@@ -409,13 +367,5 @@ Parsed Input - Classes:
       minimum occurrences   0
       maximum occurrences   *
       reference type        component_of
-
-   name                   XSChoice#14
-   description            TBD_description
-   is abstract            true
-   is choice              true
-   subclass of            TBD_subClassOfTitle
-
-   Associations
 
 End of Report
