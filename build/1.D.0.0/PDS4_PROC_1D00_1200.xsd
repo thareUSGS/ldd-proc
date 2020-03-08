@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:proc  Version:1.1.0.0 - Fri Sep 06 10:49:18 PDT 2019 -->
-  <!-- Generated from the PDS4 Information Model Version 1.11.0.0 - System Build 9a -->
+  <!-- PDS4 XML/Schema for Name Space Id:proc  Version:1.2.0.0 - Sat Mar 07 17:28:51 MST 2020 -->
+  <!-- Generated from the PDS4 Information Model Version 1.13.0.0 - System Build 10a -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <!--                                                                           -->
   <!--               Dictionary Stack                                            -->
-  <!-- 1.11.0.0 - pds: - Common Dictionary - N/A                                 -->
-  <!-- 1.1.0.0 - proc: - Processing_Information - PDS4_PROC_IngestLDD_1B00_1100. -->
+  <!-- 1.13.0.0 - pds: - Common Dictionary - N/A                                 -->
+  <!-- 1.2.0.0 - proc: - Processing_Information - PDS4_PROC_IngestLDD.xml        -->
   <!--                                                                           -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://pds.nasa.gov/pds4/proc/v1"
@@ -13,13 +13,19 @@
     xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="1.1.0.0">
+    version="1.2.0.0">
  
-    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.xsd"/>
+    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.xsd"/>
  
   <xs:annotation>
     <xs:documentation>
- The Processing_Information dictionary contains detailed information regarding the history of processing performed on data product(s) in order to produce the current product.
+ The Processing_Information dictionary contains detailed information regarding the history of 
+                processing performed on data product(s) in order to produce the current product.
+    ## CHANGE LOG ##
+    1.2.0.0, T.M.Hare
+    - upgraded to v1.13.0.0 of the IM
+    - Allow Software to be many (unbounded) to allow for many applictions to be listed for one process.
+    
     </xs:documentation>
   </xs:annotation>
  
@@ -33,11 +39,11 @@
         derived products.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="local_identifier" type="pds:local_identifier" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element ref="pds:local_identifier" minOccurs="0" maxOccurs="unbounded"> </xs:element>
       <xs:choice minOccurs="1" maxOccurs="1">
-        <xs:element ref="pds:External_Reference"> </xs:element>
         <xs:element ref="pds:Internal_Reference"> </xs:element>
         <xs:element ref="pds:Local_Internal_Reference"> </xs:element>
+        <xs:element ref="pds:External_Reference"> </xs:element>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
@@ -55,9 +61,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:choice minOccurs="1" maxOccurs="unbounded">
-        <xs:element name="Input_Product" type="proc:Input_Product"> </xs:element>
         <xs:element ref="pds:Internal_Reference"> </xs:element>
         <xs:element ref="pds:Local_Internal_Reference"> </xs:element>
+        <xs:element name="Input_Product" type="proc:Input_Product"> </xs:element>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
@@ -78,9 +84,9 @@
       <xs:element name="parameter_type" type="proc:parameter_type" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="value" type="pds:value" minOccurs="1" maxOccurs="unbounded"> </xs:element>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="pds:External_Reference"> </xs:element>
         <xs:element ref="pds:Internal_Reference"> </xs:element>
         <xs:element ref="pds:Local_Internal_Reference"> </xs:element>
+        <xs:element ref="pds:External_Reference"> </xs:element>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
@@ -98,7 +104,7 @@
       <xs:element name="description" type="pds:description" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="process_owner_name" type="proc:process_owner_name" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="process_owner_institution_name" type="proc:process_owner_institution_name" minOccurs="0" maxOccurs="1"> </xs:element>
-      <xs:element name="Software" type="proc:Software" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Software" type="proc:Software" minOccurs="0" maxOccurs="unbounded"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -247,7 +253,7 @@
         execution.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Date_Time_YMD_UTC">
-  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSZ" -->
+  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSSSSZ" -->
 	   </xs:restriction>
   </xs:simpleType>
 
@@ -258,7 +264,7 @@
         execution.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Date_Time_YMD_UTC">
-  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSZ" -->
+  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSSSSZ" -->
 	   </xs:restriction>
   </xs:simpleType>
 
@@ -303,8 +309,8 @@
   {
     "dataDictionary": {
       "Title": "PDS4 Data Dictionary" ,
-      "Version": "1.11.0.0" ,
-      "Date": "Fri Sep 06 10:49:18 PDT 2019" ,
+      "Version": "1.13.0.0" ,
+      "Date": "Sat Mar 07 17:28:51 MST 2020" ,
       "Description": "This document is a dump of the contents of the PDS4 Data Dictionary" ,
       "PropertyMapDictionary": [
       ]

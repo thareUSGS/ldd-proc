@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model
-    href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.sch"
+    href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.sch"
     schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <!-- PDS4 Local Data Dictionary Extended Ingest File for Imaging Node            -->
-<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.xsd">
+<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.xsd">
     
     <name>Processing_Information</name>
-    <ldd_version_id>1.1.0.0</ldd_version_id>
+    <ldd_version_id>1.2.0.0</ldd_version_id>
     <full_name>Jordan Padams</full_name>
     <steward_id>img</steward_id>
     <namespace_id>proc</namespace_id>
-    <comment> The Processing_Information dictionary contains detailed information regarding the history of processing performed on data product(s) in order to produce the current product.</comment>
-    <last_modification_date_time>2019-09-06T12:00:00Z</last_modification_date_time>
+    <comment> The Processing_Information dictionary contains detailed information regarding the history of 
+                processing performed on data product(s) in order to produce the current product.
+    ## CHANGE LOG ##
+    1.2.0.0, T.M.Hare
+    - upgraded to v1.13.0.0 of the IM
+    - Allow Software to be many (unbounded) to allow for many applictions to be listed for one process.
+    </comment>
+    <last_modification_date_time>2020-03-07T12:00:00Z</last_modification_date_time>
     
     <!-- Attributes START -->
     
@@ -588,7 +594,7 @@
             <local_identifier>Software</local_identifier>
             <reference_type>component_of</reference_type>
             <minimum_occurrences>0</minimum_occurrences>
-            <maximum_occurrences>1</maximum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
         </DD_Association>        
     </DD_Class>
     
