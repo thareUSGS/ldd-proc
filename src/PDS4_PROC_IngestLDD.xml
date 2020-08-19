@@ -14,9 +14,10 @@
     <comment> The Processing_Information dictionary contains detailed information regarding the history of 
                 processing performed on data product(s) in order to produce the current product.
     ## CHANGE LOG ##
+    
     1.2.0.0, T.M.Hare
     - upgraded to v1.13.0.0 of the IM
-    - Allow Software to be many (unbounded) to allow for many applictions to be listed for one process.
+    - Allow Software to be many (unbounded) to allow for many applications to be listed for one process.
     </comment>
     <last_modification_date_time>2020-03-07T12:00:00Z</last_modification_date_time>
     
